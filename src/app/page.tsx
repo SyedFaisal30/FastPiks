@@ -1,101 +1,175 @@
-import Image from "next/image";
+'use client';
+import { useState, useEffect } from 'react';
+import { FaShoppingCart, FaUserCircle, FaChevronLeft, FaChevronRight, FaInstagram, FaFacebook, FaTwitter } from 'react-icons/fa';
+import './globals.css';
 
-export default function Home() {
+export default function NavbarWithCarousel() {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const slides = [
+    { id: 1, image: '/path-to-image1.jpg', alt: 'Slide 1' },
+    { id: 2, image: '/path-to-image2.jpg', alt: 'Slide 2' },
+    { id: 3, image: '/path-to-image3.jpg', alt: 'Slide 3' },
+  ];
+
+  const handleProfileClick = () => {
+    setIsDropdownOpen((prev) => !prev);
+  };
+
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === slides.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? slides.length - 1 : prevIndex - 1
+    );
+  };
+
+  useEffect(() => {
+    const interval = setInterval(nextSlide, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <>
+      {/* Navbar */}
+      <header className="fixed top-0 left-0 w-full bg-[#f9f9f9] shadow-md z-50">
+        <div className="container mx-auto px-4 sm:px-8 py-4 flex justify-between items-center">
+          {/* Website Name */}
+          <h1 className="text-2xl sm:text-3xl font-bold font-serif text-gray-800">Faisal</h1>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          {/* Icons */}
+          <div className="flex gap-6 items-center relative">
+            {/* Cart Icon */}
+            <div className="relative cursor-pointer">
+              <FaShoppingCart className="text-xl sm:text-2xl text-gray-800 hover:text-gray-600 transition-colors duration-200" />
+              <span className="absolute -top-1 -right-2 bg-red-500 text-white text-xs sm:text-sm font-bold rounded-full px-1">3</span>
+            </div>
+
+            {/* Profile Icon */}
+            <div className="cursor-pointer relative" onClick={handleProfileClick}>
+              <FaUserCircle className="text-xl sm:text-2xl text-gray-800 hover:text-gray-600 transition-colors duration-200" />
+
+              {/* Dropdown */}
+              {isDropdownOpen && (
+                <div
+                  className="absolute right-0 mt-2 bg-white shadow-lg border border-gray-200 rounded-lg p-4 w-48 max-w-xs"
+                  style={{ maxHeight: '300px', overflowY: 'auto' }}
+                >
+                  <p className="text-gray-800 font-semibold">John Doe</p>
+                  <p className="text-sm text-gray-600 mb-2">johndoe@example.com</p>
+                  <hr className="my-2" />
+                  <button
+                    className="w-full text-left text-red-500 hover:text-red-700 text-sm mb-2"
+                    onClick={() => alert('Logged out!')}
+                  >
+                    Logout
+                  </button>
+                  {/* Additional Content */}
+                  <p className="text-gray-600 text-sm">Settings</p>
+                  <p className="text-gray-600 text-sm">Help</p>
+                  <p className="text-gray-600 text-sm">Privacy Policy</p>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+      </header>
+
+      {/* Carousel */}
+      <div
+        className="mt-16 flex justify-center items-center"
+        style={{ marginTop: '8%' }}
+      >
+        <div
+          className="relative w-[95vw] h-[70vh] overflow-hidden bg-gray-200 rounded-lg shadow-lg"
+          style={{ borderRadius: '5vh' }}
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+          {/* Slides */}
+          {slides.map((slide, index) => (
+            <div
+              key={slide.id}
+              className={`absolute inset-0 transition-transform duration-500 ${index === currentIndex ? 'translate-x-0' : 'translate-x-full'}`}
+              style={{ transform: `translateX(${(index - currentIndex) * 100}%)` }}
+            >
+              <img
+                src={slide.image}
+                alt={slide.alt}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ))}
+
+          {/* Navigation Buttons */}
+          <button
+            onClick={prevSlide}
+            className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-800 text-white rounded-full p-2 shadow-md hover:bg-gray-600"
+          >
+            <FaChevronLeft className="text-xl" />
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-800 text-white rounded-full p-2 shadow-md hover:bg-gray-600"
+          >
+            <FaChevronRight className="text-xl" />
+          </button>
+        </div>
+      </div>
+
+      {/* Cards Section */}
+      <div className="flex justify-center gap-4 mt-8">
+        {Array.from({ length: 5 }).map((_, index) => (
+          <div
+            key={index}
+            className="w-[18vw] h-[50vh] bg-white border border-gray-200 rounded-[5vh] shadow-lg"
+          >
+            <div className="w-full h-3/4 bg-gray-300 rounded-t-[5vh]"></div>
+            <div className="p-4">
+              <h3 className="text-lg font-semibold text-gray-800">Card Title</h3>
+              <p className="text-sm text-gray-600 mt-2">Description of the card goes here.</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Footer */}
+      <footer className="bg-gray-800 text-white py-8">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-between items-center">
+            {/* Quick Links */}
+            <div className="flex gap-6">
+              <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+                <FaInstagram className="text-2xl hover:text-gray-400 transition-colors" />
+              </a>
+              <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+                <FaFacebook className="text-2xl hover:text-gray-400 transition-colors" />
+              </a>
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+                <FaTwitter className="text-2xl hover:text-gray-400 transition-colors" />
+              </a>
+            </div>
+
+            {/* Contact Us & Terms */}
+            <div className="flex gap-8 text-sm">
+              <a href="/contact-us" className="hover:text-gray-400">Contact Us</a>
+              <a href="/terms-and-conditions" className="hover:text-gray-400">Terms & Conditions</a>
+              <a href="/policy" className="hover:text-gray-400">Policy</a>
+            </div>
+          </div>
+        </div>
       </footer>
-    </div>
+
+      <style jsx global>{`
+        body {
+          background-color: #f5f5f5; /* Off-white color */
+          margin: 0;
+          padding: 0;
+        }
+      `}</style>
+    </>
   );
 }
