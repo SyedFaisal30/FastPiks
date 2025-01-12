@@ -76,10 +76,8 @@ export default function NavbarWithCarousel() {
     <>
       {/* Navbar */}
       <Header username="Faisal" cartCount={3} onProfileClick={handleProfileClick} />
-      <br />
-      <br />
       {/* Carousel */}
-      <div className="mt-16 flex justify-center items-center" style={{ marginTop: "8%" }}>
+      <div className="mt-20 flex justify-center items-center">
       <div className="relative w-[95vw] h-[30vh] md:h-[70vh] overflow-hidden bg-gray-200 rounded-lg shadow-lg">
         {slides.map((slide, index) => (
           <div
@@ -114,13 +112,13 @@ export default function NavbarWithCarousel() {
     </div>
 
       {/* Cards Section */}
-      <div className="container m-auto px-4">
-      <div className="flex flex-wrap justify-evenly">
+      <div>
+      <div className="flex flex-wrap w-[100%] gap-5 justify-center mt-4">
         {cardData.map((card, index) => (
           <Link 
             href={card.link} 
             key={index} 
-            className="w-[45%] h-[25vh] md:w-[19%] md:h-[60vh] mt-4 "
+            className="w-[45%] h-[35vh] md:w-[18%] md:h-[50vh]  "
           >
             <div className="relative w-full h-full rounded-lg shadow-lg cursor-pointer hover:scale-105 transform transition duration-300">
               <div 
