@@ -1,7 +1,7 @@
 {
   "products": [
     {
-      "_id": "M1",
+      "id": "M1",
       "name": "Men's Product 1",
       "price": 4999,
       "discounted_price": 3999,
@@ -13,10 +13,11 @@
         "/Images/Men/M1/M15.jpg"
       ],
       "note": "This product is available in different colors.",
-      "category": "Men"
+      "category": "Men",
+      "stock": 120
     },
     {
-      "_id": "M2",
+      "id": "M2",
       "name": "Men's Product 2",
       "price": 5999,
       "discounted_price": 4799,
@@ -28,10 +29,11 @@
         "/Images/Men/M2/M25.jpg"
       ],
       "note": "This product is available in different colors.",
-      "category": "Men"
+      "category": "Men",
+      "stock": 87
     },
     {
-      "_id": "M3",
+      "id": "M3",
       "name": "Men's Product 3",
       "price": 6999,
       "discounted_price": 5599,
@@ -43,10 +45,11 @@
         "/Images/Men/M3/M35.jpg"
       ],
       "note": "This product is available in different colors.",
-      "category": "Men"
+      "category": "Men",
+      "stock": 102
     },
     {
-      "_id": "M4",
+      "id": "M4",
       "name": "Men's Product 4",
       "price": 7999,
       "discounted_price": 6399,
@@ -58,10 +61,11 @@
         "/Images/Men/M4/M45.jpg"
       ],
       "note": "This product is available in different colors.",
-      "category": "Men"
+      "category": "Men",
+      "stock": 65
     },
     {
-      "_id": "M5",
+      "id": "M5",
       "name": "Men's Product 5",
       "price": 8999,
       "discounted_price": 7199,
@@ -73,10 +77,11 @@
         "/Images/Men/M5/M55.jpg"
       ],
       "note": "This product is available in different colors.",
-      "category": "Men"
+      "category": "Men",
+      "stock": 150
     },
     {
-      "_id": "W1",
+      "id": "W1",
       "name": "Women's Product 1",
       "price": 4599,
       "discounted_price": 3699,
@@ -88,10 +93,11 @@
         "/Images/Women/W1/W15.jpg"
       ],
       "note": "This product is available in different colors.",
-      "category": "Women"
+      "category": "Women",
+      "stock": 135
     },
     {
-      "_id": "W2",
+      "id": "W2",
       "name": "Women's Product 2",
       "price": 5599,
       "discounted_price": 4479,
@@ -103,10 +109,11 @@
         "/Images/Women/W2/W25.jpg"
       ],
       "note": "This product is available in different colors.",
-      "category": "Women"
+      "category": "Women",
+      "stock": 88
     },
     {
-      "_id": "W3",
+      "id": "W3",
       "name": "Women's Product 3",
       "price": 6599,
       "discounted_price": 5279,
@@ -118,10 +125,11 @@
         "/Images/Women/W3/W25.jpg"
       ],
       "note": "This product is available in different colors.",
-      "category": "Women"
+      "category": "Women",
+      "stock": 97
     },
     {
-      "_id": "W4",
+      "id": "W4",
       "name": "Women's Product 4",
       "price": 7599,
       "discounted_price": 6079,
@@ -133,10 +141,11 @@
         "/Images/Women/W4/W45.jpg"
       ],
       "note": "This product is available in different colors.",
-      "category": "Women"
+      "category": "Women",
+      "stock": 115
     },
     {
-      "_id": "W5",
+      "id": "W5",
       "name": "Women's Product 5",
       "price": 8599,
       "discounted_price": 6879,
@@ -148,10 +157,11 @@
         "/Images/Women/W5/W55.jpg"
       ],
       "note": "This product is available in different colors.",
-      "category": "Women"
+      "category": "Women",
+      "stock": 82
     },
     {
-      "_id": "K1",
+      "id": "K1",
       "name": "Kid's Product 1",
       "price": 2599,
       "discounted_price": 2099,
@@ -163,10 +173,11 @@
         "/Images/Kid/K1/K15.jpg"
       ],
       "note": "This product is available in different colors.",
-      "category": "Kid"
+      "category": "Kid",
+      "stock": 75
     },
     {
-      "_id": "K2",
+      "id": "K2",
       "name": "Kid's Product 2",
       "price": 2999,
       "discounted_price": 2399,
@@ -178,10 +189,11 @@
         "/Images/Kid/K2/K24.jpg"
       ],
       "note": "This product is available in different colors.",
-      "category": "Kid"
+      "category": "Kid",
+      "stock": 120
     },
     {
-      "_id": "K3",
+      "id": "K3",
       "name": "Kid's Product 3",
       "price": 3499,
       "discounted_price": 2799,
@@ -193,10 +205,11 @@
         "/Images/Kid/K3/K34.jpg"
       ],
       "note": "This product is available in different colors.",
-      "category": "Kid"
+      "category": "Kid",
+      "stock": 140
     },
     {
-      "_id": "K4",
+      "id": "K4",
       "name": "Kid's Product 4",
       "price": 3999,
       "discounted_price": 3199,
@@ -208,10 +221,11 @@
         "/Images/Kid/K4/K45.jpg"
       ],
       "note": "This product is available in different colors.",
-      "category": "Kid"
+      "category": "Kid",
+      "stock": 59
     },
     {
-      "_id": "K5",
+      "id": "K5",
       "name": "Kid's Product 5",
       "price": 4499,
       "discounted_price": 3599,
@@ -223,10 +237,11 @@
         "/Images/Kid/K5/K55.jpg"
       ],
       "note": "This product is available in different colors.",
-      "category": "Kid"
+      "category": "Kid",
+      "stock": 68
     },
     {
-      "_id": "F1",
+      "id": "F1",
       "name": "Footwear Product 1",
       "price": 2999,
       "discounted_price": 2399,
@@ -238,10 +253,11 @@
         "/Images/Footwear/F1/F15.jpg"
       ],
       "note": "This product is available in different colors.",
-      "category": "Footwear"
+      "category": "Footwear",
+      "stock": 80
     },
     {
-      "_id": "F2",
+      "id": "F2",
       "name": "Footwear Product 2",
       "price": 3499,
       "discounted_price": 2799,
@@ -253,10 +269,11 @@
         "/Images/Footwear/F2/F25.jpg"
       ],
       "note": "This product is available in different colors.",
-      "category": "Footwear"
+      "category": "Footwear",
+      "stock": 110
     },
     {
-      "_id": "F3",
+      "id": "F3",
       "name": "Footwear Product 3",
       "price": 3999,
       "discounted_price": 3199,
@@ -268,10 +285,11 @@
         "/Images/Footwear/F3/F35.jpg"
       ],
       "note": "This product is available in different colors.",
-      "category": "Footwear"
+      "category": "Footwear",
+      "stock": 115
     },
     {
-      "_id": "F4",
+      "id": "F4",
       "name": "Footwear Product 4",
       "price": 4499,
       "discounted_price": 3599,
@@ -283,10 +301,11 @@
         "/Images/Footwear/F4/F45.jpg"
       ],
       "note": "This product is available in different colors.",
-      "category": "Footwear"
+      "category": "Footwear",
+      "stock": 50
     },
     {
-      "_id": "F5",
+      "id": "F5",
       "name": "Footwear Product 5",
       "price": 4999,
       "discounted_price": 3999,
@@ -298,82 +317,8 @@
         "/Images/Footwear/F5/F55.jpg"
       ],
       "note": "This product is available in different colors.",
-      "category": "Footwear"
-    },
-    {
-      "_id": "A1",
-      "name": "Accessories Product 1",
-      "price": 999,
-      "discounted_price": 799,
-      "images": [
-        "/Images/Accessories/A1/A11.jpg",
-        "/Images/Accessories/A1/A12.jpg",
-        "/Images/Accessories/A1/A13.jpg",
-        "/Images/Accessories/A1/A14.jpg",
-        "/Images/Accessories/A1/A15.jpg"
-      ],
-      "note": "This product is available in different colors.",
-      "category": "Accessories"
-    },
-    {
-      "_id": "A2",
-      "name": "Accessories Product 2",
-      "price": 1199,
-      "discounted_price": 999,
-      "images": [
-        "/Images/Accessories/A2/A21.jpg",
-        "/Images/Accessories/A2/A22.jpg",
-        "/Images/Accessories/A2/A23.jpg",
-        "/Images/Accessories/A2/A24.jpg",
-        "/Images/Accessories/A2/A25.jpg"
-      ],
-      "note": "This product is available in different colors.",
-      "category": "Accessories"
-    },
-    {
-      "_id": "A3",
-      "name": "Accessories Product 3",
-      "price": 1399,
-      "discounted_price": 1199,
-      "images": [
-        "/Images/Accessories/A3/A31.jpg",
-        "/Images/Accessories/A3/A32.jpg",
-        "/Images/Accessories/A3/A33.jpg",
-        "/Images/Accessories/A3/A34.jpg",
-        "/Images/Accessories/A3/A35.jpg"
-      ],
-      "note": "This product is available in different colors.",
-      "category": "Accessories"
-    },
-    {
-      "_id": "A4",
-      "name": "Accessories Product 4",
-      "price": 1599,
-      "discounted_price": 1399,
-      "images": [
-        "/Images/Accessories/A4/A41.jpg",
-        "/Images/Accessories/A4/A42.jpg",
-        "/Images/Accessories/A4/A43.jpg",
-        "/Images/Accessories/A4/A44.jpg",
-        "/Images/Accessories/A4/A45.jpg"
-      ],
-      "note": "This product is available in different colors.",
-      "category": "Accessories"
-    },
-    {
-      "_id": "A5",
-      "name": "Accessories Product 5",
-      "price": 1799,
-      "discounted_price": 1599,
-      "images": [
-        "/Images/Accessories/A5/A51.jpg",
-        "/Images/Accessories/A5/A52.jpg",
-        "/Images/Accessories/A5/A53.jpg",
-        "/Images/Accessories/A5/A54.jpg",
-        "/Images/Accessories/A5/A55.jpg"
-      ],
-      "note": "This product is available in different colors.",
-      "category": "Accessories"
+      "category": "Footwear",
+      "stock": 140
     }
   ]
 }
