@@ -60,7 +60,7 @@ const CategoryPage: React.FC = () => {
         <ul>
           <li><Link href="/category/Men">Men</Link></li>
           <li><Link href="/category/Women">Women</Link></li>
-          <li><Link href="/category/Kids">Kids</Link></li>
+          <li><Link href="/category/Kid">Kids</Link></li>
           <li><Link href="/category/Footwear">Footwear</Link></li>
           <li><Link href="/category/Accessories">Accessories</Link></li>
         </ul>

@@ -319,6 +319,81 @@
       "note": "This product is available in different colors.",
       "category": "Footwear",
       "stock": 140
+    },
+    {
+      "id": "A1",
+      "name": "Accessories Product 1",
+      "price": 299,
+      "discounted_price": 239,
+      "images": [
+        "/Images/Accessories/A1/A11.jpg",
+        "/Images/Accessories/A1/A12.jpg",
+        "/Images/Accessories/A1/A13.jpg",
+        "/Images/Accessories/A1/A14.jpg",
+        "/Images/Accessories/A1/A15.jpg"
+      ],
+      "note": "This product is available in different colors.",
+      "category": "Accessories"
+    },
+    {
+      "id": "A2",
+      "name": "Accessories Product 2",
+      "price": 399,
+      "discounted_price": 319,
+      "images": [
+        "/Images/Accessories/A2/A21.jpg",
+        "/Images/Accessories/A2/A22.jpg",
+        "/Images/Accessories/A2/A23.jpg",
+        "/Images/Accessories/A2/A24.jpg",
+        "/Images/Accessories/A2/A25.jpg"
+      ],
+      "note": "This product is available in different colors.",
+      "category": "Accessories"
+    },
+    {
+      "id": "A3",
+      "name": "Accessories Product 3",
+      "price": 499,
+      "discounted_price": 399,
+      "images": [
+        "/Images/Accessories/A3/A31.jpg",
+        "/Images/Accessories/A3/A32.jpg",
+        "/Images/Accessories/A3/A33.jpg",
+        "/Images/Accessories/A3/A34.jpg",
+        "/Images/Accessories/A3/A35.jpg"
+      ],
+      "note": "This product is available in different colors.",
+      "category": "Accessories"
+    },
+    {
+      "id": "A4",
+      "name": "Accessories Product 4",
+      "price": 599,
+      "discounted_price": 479,
+      "images": [
+        "/Images/Accessories/A4/A41.jpg",
+        "/Images/Accessories/A4/A42.jpg",
+        "/Images/Accessories/A4/A43.jpg",
+        "/Images/Accessories/A4/A44.jpg",
+        "/Images/Accessories/A4/A45.jpg"
+      ],
+      "note": "This product is available in different colors.",
+      "category": "Accessories"
+    },
+    {
+      "id": "A5",
+      "name": "Accessories Product 5",
+      "price": 699,
+      "discounted_price": 559,
+      "images": [
+        "/Images/Accessories/A5/A51.jpg",
+        "/Images/Accessories/A5/A52.jpg",
+        "/Images/Accessories/A5/A53.jpg",
+        "/Images/Accessories/A5/A54.jpg",
+        "/Images/Accessories/A5/A55.jpg"
+      ],
+      "note": "This product is available in different colors.",
+      "category": "Accessories"
     }
   ]
 }
