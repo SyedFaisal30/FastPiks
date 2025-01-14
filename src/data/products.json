@@ -14,7 +14,7 @@
       ],
       "note": "This product is available in different colors.",
       "category": "Men",
-      "stock": 120
+      "stock": 123
     },
     {
       "id": "M2",
@@ -30,7 +30,7 @@
       ],
       "note": "This product is available in different colors.",
       "category": "Men",
-      "stock": 87
+      "stock": 92
     },
     {
       "id": "M3",
@@ -46,7 +46,7 @@
       ],
       "note": "This product is available in different colors.",
       "category": "Men",
-      "stock": 102
+      "stock": 105
     },
     {
       "id": "M4",
@@ -62,7 +62,7 @@
       ],
       "note": "This product is available in different colors.",
       "category": "Men",
-      "stock": 65
+      "stock": 71
     },
     {
       "id": "M5",
@@ -78,7 +78,7 @@
       ],
       "note": "This product is available in different colors.",
       "category": "Men",
-      "stock": 150
+      "stock": 152
     },
     {
       "id": "W1",
@@ -94,7 +94,7 @@
       ],
       "note": "This product is available in different colors.",
       "category": "Women",
-      "stock": 135
+      "stock": 141
     },
     {
       "id": "W2",
@@ -110,7 +110,7 @@
       ],
       "note": "This product is available in different colors.",
       "category": "Women",
-      "stock": 88
+      "stock": 94
     },
     {
       "id": "W3",
@@ -126,7 +126,7 @@
       ],
       "note": "This product is available in different colors.",
       "category": "Women",
-      "stock": 97
+      "stock": 102
     },
     {
       "id": "W4",
@@ -142,7 +142,7 @@
       ],
       "note": "This product is available in different colors.",
       "category": "Women",
-      "stock": 115
+      "stock": 118
     },
     {
       "id": "W5",
@@ -158,7 +158,7 @@
       ],
       "note": "This product is available in different colors.",
       "category": "Women",
-      "stock": 82
+      "stock": 85
     },
     {
       "id": "K1",
@@ -174,7 +174,7 @@
       ],
       "note": "This product is available in different colors.",
       "category": "Kid",
-      "stock": 75
+      "stock": 80
     },
     {
       "id": "K2",
@@ -190,7 +190,7 @@
       ],
       "note": "This product is available in different colors.",
       "category": "Kid",
-      "stock": 120
+      "stock": 123
     },
     {
       "id": "K3",
@@ -206,7 +206,7 @@
       ],
       "note": "This product is available in different colors.",
       "category": "Kid",
-      "stock": 140
+      "stock": 145
     },
     {
       "id": "K4",
@@ -222,7 +222,7 @@
       ],
       "note": "This product is available in different colors.",
       "category": "Kid",
-      "stock": 59
+      "stock": 61
     },
     {
       "id": "K5",
@@ -238,7 +238,7 @@
       ],
       "note": "This product is available in different colors.",
       "category": "Kid",
-      "stock": 68
+      "stock": 72
     },
     {
       "id": "F1",
@@ -254,7 +254,7 @@
       ],
       "note": "This product is available in different colors.",
       "category": "Footwear",
-      "stock": 80
+      "stock": 85
     },
     {
       "id": "F2",
@@ -270,7 +270,7 @@
       ],
       "note": "This product is available in different colors.",
       "category": "Footwear",
-      "stock": 110
+      "stock": 112
     },
     {
       "id": "F3",
@@ -286,7 +286,7 @@
       ],
       "note": "This product is available in different colors.",
       "category": "Footwear",
-      "stock": 115
+      "stock": 120
     },
     {
       "id": "F4",
@@ -302,7 +302,7 @@
       ],
       "note": "This product is available in different colors.",
       "category": "Footwear",
-      "stock": 50
+      "stock": 53
     },
     {
       "id": "F5",
@@ -318,7 +318,7 @@
       ],
       "note": "This product is available in different colors.",
       "category": "Footwear",
-      "stock": 140
+      "stock": 145
     },
     {
       "id": "A1",
@@ -333,7 +333,8 @@
         "/Images/Accessories/A1/A15.jpg"
       ],
       "note": "This product is available in different colors.",
-      "category": "Accessories"
+      "category": "Accessories",
+      "stock": 85
     },
     {
       "id": "A2",
@@ -348,7 +349,8 @@
         "/Images/Accessories/A2/A25.jpg"
       ],
       "note": "This product is available in different colors.",
-      "category": "Accessories"
+      "category": "Accessories",
+      "stock": 98
     },
     {
       "id": "A3",
@@ -363,7 +365,8 @@
         "/Images/Accessories/A3/A35.jpg"
       ],
       "note": "This product is available in different colors.",
-      "category": "Accessories"
+      "category": "Accessories",
+      "stock": 110
     },
     {
       "id": "A4",
@@ -378,7 +381,8 @@
         "/Images/Accessories/A4/A45.jpg"
       ],
       "note": "This product is available in different colors.",
-      "category": "Accessories"
+      "category": "Accessories",
+      "stock": 99
     },
     {
       "id": "A5",
@@ -393,7 +397,8 @@
         "/Images/Accessories/A5/A55.jpg"
       ],
       "note": "This product is available in different colors.",
-      "category": "Accessories"
+      "category": "Accessories",
+      "stock": 130
     }
   ]
 }
