@@ -1,19 +1,16 @@
 import mongoose, { Schema, Document } from "mongoose";
 
-// Interface for Cart Item
 export interface CartItem extends Document {
   productId: mongoose.Schema.Types.ObjectId;
   quantity: number;
   addedAt: Date;
 }
 
-// Interface for User Document
 export interface User extends Document {
   username: string;
   email: string;
   password: string;
   isVerified: boolean;
-  isAcceptingMessages: boolean;
   verifyCode: string;
   verifyCodeExpiry: Date;
   cart: CartItem[];
@@ -21,7 +18,6 @@ export interface User extends Document {
   updatedAt: Date;
 }
 
-// Cart Item Schema
 const CartItemSchema: Schema<CartItem> = new Schema({
   productId: {
     type: mongoose.Schema.Types.ObjectId,
@@ -39,9 +35,8 @@ const CartItemSchema: Schema<CartItem> = new Schema({
   },
 });
 
-// User Schema
-const UserSchema: Schema<User> = new Schema({
-  username: {
+const UserSchema : Schema<User> = new Schema({
+  username:{
     type: String,
     required: [true, "Username is required"],
     unique: true,
@@ -61,19 +56,15 @@ const UserSchema: Schema<User> = new Schema({
     type: Boolean,
     default: false,
   },
-  isAcceptingMessages: {
-    type: Boolean,
-    default: true,
-  },
   verifyCode: {
     type: String,
-    required: [true, "Verify code is required"],
+    required: [true, "Verification code is required"],
   },
   verifyCodeExpiry: {
     type: Date,
-    required: [true, "Verify code expiry is required"],
+    required: [true, "Verification code expiry date is required"],
   },
-  cart: [CartItemSchema], // Array of cart items
+  cart: [CartItemSchema],
   createdAt: {
     type: Date,
     default: Date.now,
@@ -82,12 +73,6 @@ const UserSchema: Schema<User> = new Schema({
     type: Date,
     default: Date.now,
   },
-});
-
-// Middleware to update the `updatedAt` field before saving
-UserSchema.pre("save", function (next) {
-  this.updatedAt = new Date();
-  next();
 });
 
 const UserModel = (mongoose.models.User as mongoose.Model<User>) || mongoose.model<User>("User", UserSchema);

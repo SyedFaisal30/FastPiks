@@ -8,6 +8,7 @@ export interface Product extends Document {
   images: string[]; // Array of image URLs
   note?: string; // Optional note
   category: string; // Category (Men, Women, etc.)
+  stock: number;
   createdAt: Date; // Date of creation (auto-managed by Mongoose)
   updatedAt: Date; // Date of update (auto-managed by Mongoose)
 }
@@ -46,12 +47,18 @@ const productSchema: Schema<Product> = new Schema(
       required: [true, "Product category is required"],
       enum: ["Men", "Women", "Kids", "Footwear", "Accessories"], // Ensure valid category
     },
+    stock: {
+      type: Number,
+      required: [true, "Product stock is required"],
+      min: [0, "Stock cannot be negative"],
+    },
   },
   { timestamps: true } // Automatically adds createdAt and updatedAt fields
 );
 
+
 // Model creation
 const ProductModel =
-  mongoose.models.Product || mongoose.model<Product>("products", productSchema);
+  mongoose.models.Product ;
 
 export default ProductModel;
