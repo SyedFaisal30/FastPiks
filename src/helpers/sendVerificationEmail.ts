@@ -1,26 +1,29 @@
 import nodemailer from "nodemailer";
 
-async function sendVerificationEmail(
-    fullname: string,
+async function sendEmail(
+    name: string,
     email: string,
-    verifyCode: string 
-): Promise<nodemailer.SentMessageInfo>{
+    code: number
+) {
+    // Create a transporter using Gmail's SMTP server
     const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
             user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASSWORD,
+            pass: process.env.EMAIL_PASS,
         },
     });
 
-    const maildata = {
+    // Set up email data
+    const mailOptions = {
         from: process.env.EMAIL_USER,
         to: email,
         subject: "Email Verification Code",
-        text: `Hello ${fullname}, your verification code is: ${verifyCode}\n\n Use this code to complete yopur signup process.`,
+        text: `Hello ${name},\n\nYour verification code is: ${code}\n\nPlease use this code to complete your signup process.`, // Plain text body
     };
 
-    return transporter.sendMail(maildata);
+    // Send the email
+    return transporter.sendMail(mailOptions);
 }
 
-export default sendVerificationEmail;
+export default sendEmail;

@@ -11,8 +11,6 @@ export interface User extends Document {
   email: string;
   password: string;
   isVerified: boolean;
-  verifyCode: string;
-  verifyCodeExpiry: Date;
   cart: CartItem[];
   createdAt: Date;
   updatedAt: Date;
@@ -55,14 +53,6 @@ const UserSchema : Schema<User> = new Schema({
   isVerified: {
     type: Boolean,
     default: false,
-  },
-  verifyCode: {
-    type: String,
-    required: [true, "Verification code is required"],
-  },
-  verifyCodeExpiry: {
-    type: Date,
-    required: [true, "Verification code expiry date is required"],
   },
   cart: [CartItemSchema],
   createdAt: {
