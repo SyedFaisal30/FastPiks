@@ -45,7 +45,7 @@ const productSchema: Schema<Product> = new Schema(
     category: {
       type: String,
       required: [true, "Product category is required"],
-      enum: ["Men", "Women", "Kids", "Footwear", "Accessories"], // Ensure valid category
+      enum: ["Men", "Women", "Kid", "Footwear", "Accessories"], // Ensure valid category
     },
     stock: {
       type: Number,
