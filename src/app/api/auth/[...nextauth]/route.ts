@@ -30,9 +30,9 @@ export const authOptions: NextAuthOptions = {
             throw new Error("User not found with email or username!");
           }
 
-          if (!user.isVerified) {
-            throw new Error("User is not verified!");
-          }
+          // if (!user.isVerified) {
+          //   throw new Error("User is not verified!");
+          // }
 
           // Compare the password
           const isPasswordCorrect = await bcrypt.compare(credentials.password, user.password);
@@ -53,6 +53,7 @@ export const authOptions: NextAuthOptions = {
   callbacks:{
     async jwt({token,user}){
       if(user){
+        token.isAdmin = user.isAdmin;
         token.id = user._id?.toString();
         token.isVerified = user.isVerified;
         token.username = user.username;
@@ -61,6 +62,7 @@ export const authOptions: NextAuthOptions = {
     },
     async session({session,token}){
       if(token){
+        token.isAdmin = token.isAdmin;
         token._id = token._id?.toString();
         token.isVerified = token.isVerified;
         token.username = token.username;

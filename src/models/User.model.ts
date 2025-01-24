@@ -11,6 +11,7 @@ export interface User extends Document {
   email: string;
   password: string;
   isVerified: boolean;
+  isAdmin: boolean;
   cart: CartItem[];
   createdAt: Date;
   updatedAt: Date;
@@ -51,6 +52,10 @@ const UserSchema : Schema<User> = new Schema({
     required: [true, "Password is required"],
   },
   isVerified: {
+    type: Boolean,
+    default: false,
+  },
+  isAdmin: {
     type: Boolean,
     default: false,
   },
