@@ -12,11 +12,19 @@ export async function GET(request: Request) {
 
     try {
         const { searchParams } = new URL(request.url);
-        const queryParams = {
-            username : searchParams.get("username"),
-        };
+        const username = searchParams.get("username");
 
-        const  result = UsernameQuerySchema.safeParse(queryParams);
+        if(!username){
+            return Response.json(
+                {
+                    success: false,
+                    message: "Missing username parameter ",
+                },
+                { status: 400 }
+            );
+        }
+
+        const  result = UsernameQuerySchema.safeParse({username});
 
         if(!result.success){
             const usernameErrors = result.error.format().username?._errors || [];
@@ -33,14 +41,13 @@ export async function GET(request: Request) {
             ) 
         }
 
-        const { username } = result.data;
+        const { username: validatedUsername } = result.data;
 
-        const existingVerifiedUser = await UserModel.findOne({
-            username,
-            isVerified: true,
+        const existingUser = await UserModel.findOne({
+            username: validatedUsername
         });
 
-        if(!existingVerifiedUser){
+        if(existingUser){
             return Response.json(
                 {
                     success: false,

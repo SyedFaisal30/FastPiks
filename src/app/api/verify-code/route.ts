@@ -7,9 +7,9 @@ export async function POST(request: Request) {
 
     try {
         const { username, code } = await request.json();
-
+        const decodeUsername=decodeURIComponent(username);
         // Validate input
-        if (!code || !username) {
+        if (!code || !decodeUsername) {
             return Response.json(
                 {
                     success: false,
@@ -20,8 +20,10 @@ export async function POST(request: Request) {
         }
 
         // Find the verification record by the code and username
-        const verification = await VerificationModel.findOne({ username, otp: code });
+        const verification = await VerificationModel.findOne({ username: decodeUsername, otp: parseInt(code) });
         if (!verification) {
+            console.log("No verification record found with the provided username and code.");
+
             return Response.json(
                 {
                     success: false,
@@ -43,7 +45,7 @@ export async function POST(request: Request) {
         }
 
         // Now copy data from VerificationModel to UserModel and mark as verified
-        let user = await UserModel.findOne({ username });
+        let user = await UserModel.findOne({ username: decodeUsername });
 
         // If user does not exist, create a new user using the verification data
         if (!user) {
@@ -61,7 +63,7 @@ export async function POST(request: Request) {
         await user.save();
 
         // Delete the verification record
-        await VerificationModel.deleteOne({ username, otp: parseInt(code) });
+        await VerificationModel.deleteOne({ username: decodeUsername, otp: parseInt(code) });
 
         return Response.json(
             {

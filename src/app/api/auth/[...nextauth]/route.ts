@@ -1,3 +1,4 @@
+import NextAuth from "next-auth/next";
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
@@ -10,7 +11,7 @@ export const authOptions: NextAuthOptions = {
       id: "credentials",
       name: "Credentials",
       credentials: {
-        email: { label: "Email or Username", type: "text" },
+        email: { label: "Email", type: "text" },
         password: { label: "Password", type: "password" },
       },
 
@@ -20,9 +21,7 @@ export const authOptions: NextAuthOptions = {
 
         try {
           // Find user by email or username
-          const user = await UserModel.findOne({
-            $or: [{ email: credentials.email }, { username: credentials.identifier }],
-          });
+          const user = await UserModel.findOne({ email: credentials.email });
 
           console.log("User Found:", user);
 
@@ -68,7 +67,11 @@ export const authOptions: NextAuthOptions = {
         token.username = token.username;
       }
       return session;
-    }
+    },
+    async redirect({ url, baseUrl }) {
+      // Redirect to the homepage after successful login
+      return baseUrl+"/"; // This will redirect to the homepage ("/")
+    },
   },
   session: {
     strategy: "jwt",
@@ -78,3 +81,7 @@ export const authOptions: NextAuthOptions = {
     signIn: "/sign-in",
   }
 };
+
+const handler = NextAuth(authOptions);
+
+export { handler as GET, handler as POST };
