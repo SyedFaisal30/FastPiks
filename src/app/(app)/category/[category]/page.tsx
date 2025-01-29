@@ -88,10 +88,30 @@ const CategoryPage: React.FC = () => {
     }
   };
   
-  const handleBuyNow = (productId: string) => {
-    console.log(`Buying product with ID ${productId}`);
+  const handleBuyNow = async (productId: string) => {
+    try {
+      // Check if the user is logged in before proceeding
+      if (!session?.user) {
+        toast({ title: "Login required", description: "Please log in to complete the purchase." });
+        return;
+      }
+  
+      // Fetch product details (you could optimize this by passing product data instead of productId)
+      const product = products.find((prod) => prod._id === productId);
+      if (!product) {
+        toast({ title: "Product not found", description: "This product is unavailable." });
+        return;
+      }
+  
+      // Redirect to address form with username and product details
+      window.location.href = `/address?productId=${productId}&quantity=1&username=${session.user.username}&productName=${product.name}`;  // Redirect with query parameters
+      toast({ title: "Redirecting to address page", description: "Please provide your address to complete the purchase." });
+    } catch (error) {
+      console.error("Error during buy now:", error);
+      toast({ title: "Error", description: "Failed to initiate direct purchase." });
+    }
   };
-
+  
   const calculateDiscountPercentage = (price: number, discounted_price: number) => {
     return ((price - discounted_price) / price) * 100;
   };
