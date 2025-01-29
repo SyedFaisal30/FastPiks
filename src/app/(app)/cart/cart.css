@@ -20,9 +20,10 @@
     box-sizing: border-box;
   }
   
+  /* Adjusted Product Item Size to 40% */
   .productItem {
-    width: 47%; /* Takes 48% of the parent width */
-    height: 62vh;
+    width: 30%; /* Adjusted to 40% width */
+    height: 40%; /* Allow height to adjust based on content */
     margin: 1vh 1vw; /* Spacing between products */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 15px;
@@ -39,8 +40,8 @@
   /* Image slider section */
   .slidesDetail {
     position: relative;
-    width: 100%;
-    height: 56vh;
+    width: 100%; /* Image takes full width */
+    height: 100%; /* Adjust height to fit content */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -51,15 +52,10 @@
   
   .slideDetail {
     width: 100%;
-    height: 100%;
-    /* display: none; */
+    height: 100%; /* Ensure image scales correctly */
     object-fit: cover;
     border-radius: 10px;
     transition: opacity 0.3s ease-in-out; /* Smooth transition */
-  }
-  
-  .slideDetail.active {
-    display: block; /* Only the active image is visible */
   }
   
   /* Navigation buttons for the slider */
@@ -92,7 +88,7 @@
   
   /* Style for Product Name */
   .detail h2 {
-    font-size: 24px;
+    font-size: 18px; /* Adjusted font size */
     font-weight: bold;
     color: black;
     margin-bottom: 10px;
@@ -100,14 +96,14 @@
   
   /* Style for Price */
   .detail p {
-    font-size: 20px;
+    font-size: 16px; /* Adjusted font size */
     margin-bottom: 10px;
     color: #555;
   }
   
   /* Style for Discounted Price */
   .detail p b {
-    font-size: 22px;
+    font-size: 18px; /* Adjusted font size */
     color: #f44; /* Red color to highlight discounted price */
     font-weight: bold;
     margin-left: 10px;
@@ -117,20 +113,20 @@
   .detail p del {
     color: red;
     margin-right: 10px;
-    font-size: 18px;
+    font-size: 16px; /* Adjusted font size */
     text-decoration: line-through;
   }
   
   /* Style for Note Section */
   .note {
-    font-size: 16px;
+    font-size: 14px; /* Adjusted font size */
     color: #333;
     margin-top: 10px;
     font-style: italic;
   }
   
   .policy {
-    font-size: 14px;
+    font-size: 12px; /* Adjusted font size */
     list-style-type: none;
   }
   
@@ -147,11 +143,11 @@
   .addToCartBtn, .buyNowBtn {
     display: flex;
     align-items: center;
-    padding: 10px 20px;
+    padding: 8px 15px; /* Adjusted padding */
     border: none;
     background-color: #f5f5f5;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px; /* Adjusted font size */
   }
   
   .addToCartBtn:hover, .buyNowBtn:hover {
@@ -160,7 +156,7 @@
   
   .addToCartBtn svg, .buyNowBtn svg {
     margin-right: 8px;
-    font-size: 20px;
+    font-size: 18px; /* Adjusted icon size */
   }
   
   .addToCartBtn, .buyNowBtn {
@@ -204,17 +200,16 @@
     color: #000;
   }
   
-  
   /* Media Queries for Responsiveness */
   @media (max-width: 768px) {
     .productItem {
-      width: 98%; /* Takes 95% of the width for smaller screens */
+      width: 95%; /* Adjusted to 95% width for smaller screens */
       flex-direction: column; /* Stack the image and details vertically */
       height: auto; /* Allow height to adjust based on content */
     }
   
     .slidesDetail {
-      width: 77vw; /* Make the image section 95% of the viewport width */
+      width: 100%; /* Make the image section take full width */
       height: 50vh; /* Set a specific height for the image section */
     }
   
@@ -250,5 +245,4 @@
       padding: 8px 2px; /* Further adjust padding */
     }
   }
-  
   
