@@ -7,6 +7,7 @@ export interface CartItem {
   image: string[];  // Array to store image URLs
   quantity: number;
   price: number;
+  discounted_price:number
   category: string;
   totalPrice: number;
   isBuy: boolean;
@@ -44,6 +45,10 @@ const cartItemSchema = new Schema<CartItem>({
     min: 1, // Ensures quantity is at least 1
   },
   price: {
+    type: Number,
+    required: true,
+  },
+  discounted_price: {
     type: Number,
     required: true,
   },
