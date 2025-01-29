@@ -59,15 +59,15 @@ export const authOptions: NextAuthOptions = {
       }   
       return token; 
     },
-    async session({session,token}){
-      if(token){
-        token.isAdmin = token.isAdmin;
-        token._id = token._id?.toString();
-        token.isVerified = token.isVerified;
-        token.username = token.username;
+    async session({ session, token }) {
+      if (token) {
+        session.user.id = token.id;
+        session.user.isAdmin = token.isAdmin;
+        session.user.isVerified = token.isVerified;
+        session.user.username = token.username; // ✅ Properly assigning username
       }
       return session;
-    },
+    },  
     async redirect({ url, baseUrl }) {
       // Redirect to the homepage after successful login
       return baseUrl+"/"; // This will redirect to the homepage ("/")

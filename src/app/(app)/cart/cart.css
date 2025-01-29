@@ -1,0 +1,254 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    padding: 20px;
+  }
+  
+  /* Main Wrapper for Horizontal Layout */
+  .productWrapper {
+    display: flex;
+    padding: 20px 0;
+    justify-content: center; /* Default to start */
+    flex-wrap: wrap; /* Allow items to wrap */
+    box-sizing: border-box;
+  }
+  
+  .productItem {
+    width: 47%; /* Takes 48% of the parent width */
+    height: 62vh;
+    margin: 1vh 1vw; /* Spacing between products */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    background-color: white;
+    display: flex;
+    flex-direction: row; /* Stack image and details vertically */
+    justify-content: space-between;
+    padding: 20px;
+    scroll-snap-align: start; /* Ensures smooth snap when scrolling */
+    gap: 1vw;
+    position: relative; /* Needed for absolute positioning of buttons */
+  }
+  
+  /* Image slider section */
+  .slidesDetail {
+    position: relative;
+    width: 100%;
+    height: 56vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden; /* Hide the non-active images */
+  }
+  
+  .slideDetail {
+    width: 100%;
+    height: 100%;
+    /* display: none; */
+    object-fit: cover;
+    border-radius: 10px;
+    transition: opacity 0.3s ease-in-out; /* Smooth transition */
+  }
+  
+  .slideDetail.active {
+    display: block; /* Only the active image is visible */
+  }
+  
+  /* Navigation buttons for the slider */
+  .prevDetail, .nextDetail {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 24px;
+  }
+  
+  .prevDetail {
+    left: 10px;
+  }
+  
+  .nextDetail {
+    right: 10px;
+  }
+  
+  /* Product details section */
+  .detail {
+    width: 100%;
+    text-align: left;
+  }
+  
+  /* Style for Product Name */
+  .detail h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 10px;
+  }
+  
+  /* Style for Price */
+  .detail p {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #555;
+  }
+  
+  /* Style for Discounted Price */
+  .detail p b {
+    font-size: 22px;
+    color: #f44; /* Red color to highlight discounted price */
+    font-weight: bold;
+    margin-left: 10px;
+  }
+  
+  /* Strikethrough price style */
+  .detail p del {
+    color: red;
+    margin-right: 10px;
+    font-size: 18px;
+    text-decoration: line-through;
+  }
+  
+  /* Style for Note Section */
+  .note {
+    font-size: 16px;
+    color: #333;
+    margin-top: 10px;
+    font-style: italic;
+  }
+  
+  .policy {
+    font-size: 14px;
+    list-style-type: none;
+  }
+  
+  .policy li {
+    margin-bottom: 10px;
+  }
+  
+  .productActions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .addToCartBtn, .buyNowBtn {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    border: none;
+    background-color: #f5f5f5;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .addToCartBtn:hover, .buyNowBtn:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .addToCartBtn svg, .buyNowBtn svg {
+    margin-right: 8px;
+    font-size: 20px;
+  }
+  
+  .addToCartBtn, .buyNowBtn {
+    color: #333; /* Make sure the text and icons are dark */
+  }
+  
+  /* Category Navigation Links */
+  .categoryNav {
+    margin-top: 20px;
+    margin-bottom: -15px;
+    padding: 10px;
+    background-color: #f9f9f9; /* Light background color */
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  .categoryNav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .categoryNav li {
+    display: inline-block;
+  }
+  
+  .categoryNav a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+  }
+  
+  .categoryNav a:hover {
+    background-color: #ddd;
+    color: #000;
+  }
+  
+  
+  /* Media Queries for Responsiveness */
+  @media (max-width: 768px) {
+    .productItem {
+      width: 98%; /* Takes 95% of the width for smaller screens */
+      flex-direction: column; /* Stack the image and details vertically */
+      height: auto; /* Allow height to adjust based on content */
+    }
+  
+    .slidesDetail {
+      width: 77vw; /* Make the image section 95% of the viewport width */
+      height: 50vh; /* Set a specific height for the image section */
+    }
+  
+    .detail {
+      width: 100%;
+      margin-top: 20px; /* Add space between the image and details */
+    }
+  
+    .productActions {
+      flex-direction: row;
+      gap: 15px; /* Increase gap between buttons for vertical layout */
+    }
+  
+    .addToCartBtn, .buyNowBtn {
+      width: 100%; /* Make buttons take up the full width */
+      flex-direction: row;
+    }
+  
+    .categoryNav ul {
+      flex-direction: row; /* Stack the links vertically */
+      align-items: center; /* Center the links */
+    }
+  
+    .categoryNav a {
+      font-size: 16px; /* Adjust font size for smaller screens */
+      padding: 8px 6px; /* Adjust padding for smaller screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .categoryNav a {
+      font-size: 14px; /* Further adjust font size for very small screens */
+      padding: 8px 2px; /* Further adjust padding */
+    }
+  }
+  
+  

@@ -1,65 +1,107 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import dbConnect from "@/lib/dbConnect";
 import { getToken } from "next-auth/jwt";
-import dbConnect from "@/lib/dbConnect"; // Your DB connection
-import UserModel from "@/models/User.model"; // Your User model
 import ProductModel from "@/models/Product.model";
+import CartModel from "@/models/Cart.model";
+import { CartItem } from "@/models/Cart.model";
+import { NextRequest, NextResponse } from "next/server";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method === "POST") {
+export async function POST(req: NextRequest) {
+    // Get the token from the request
     const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
-
     if (!token) {
-      return res.status(401).json({ message: "User is not logged in. Please log in to add items to the cart." });
+        return NextResponse.json(
+            {
+                success: false,
+                message: "User is not logged in.",
+            },
+            { status: 401 }
+        );
     }
 
     await dbConnect();
 
-    const { productId, quantity } = req.body;
-
-    if (!productId || !quantity) {
-      return res.status(400).json({ message: "Missing required fields." });
-    }
-
     try {
-      // Find the logged-in user
-      const user = await UserModel.findById(token.sub);
-      if (!user) {
-        return res.status(404).json({ message: "User not found." });
-      }
+        const { productId, quantity } = await req.json();
 
-      // Fetch product details from the database using the productId
-      const product = await ProductModel.findById(productId); // Replace with your Product model
-      if (!product) {
-        return res.status(404).json({ message: "Product not found." });
-      }
+        // Validate input
+        if (!productId || typeof quantity !== 'number' || quantity <= 0) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Invalid product ID or quantity.",
+                },
+                { status: 400 }
+            );
+        }
 
-      // Destructure required fields from the product
-      const { name, price } = product;
+        // Find the product by its ID
+        const product = await ProductModel.findById(productId);
+        if (!product) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Product not found.",
+                },
+                { status: 404 }
+            );
+        }
 
-      // Check if the product is already in the user's cart
-      const existingItemIndex = user.cart.findIndex(item => item.productId.toString() === productId);
-      if (existingItemIndex > -1) {
-        user.cart[existingItemIndex].quantity += quantity;
-        user.cart[existingItemIndex].totalPrice += price * quantity;
-      } else {
-        user.cart.push({
-          productId,
-          name, // Add product name for convenience
-          quantity,
-          price,
-          totalPrice: price * quantity,
-          addedAt: new Date(),
-        });
-      }
+        // Extract product details (excluding stock)
+        const { name, price, discounted_price, images, category } = product;
 
-      // Save the updated cart to the database
-      await user.save();
-      return res.status(200).json({ message: "Product added to cart", cart: user.cart });
+        // Prepare the product data to be added to the cart
+        const cartProduct: CartItem = {
+            productId,
+            name,
+            image: images,  // Store all images
+            quantity,
+            price,
+            totalPrice: (discounted_price || price) * quantity,  // Calculate total price
+            category,
+            isBuy: false, // Default to not purchased
+        };
+
+        // Find the user's cart
+        let cart = await CartModel.findOne({ userId: token.sub });
+
+        if (!cart) {
+            cart = new CartModel({ userId: token.sub, items: [], totalAmount: 0 });
+        }
+
+        // Check if the product already exists in the cart
+        const existingItemIndex = cart.items.findIndex((item: CartItem) => item.productId.toString() === productId);
+
+        if (existingItemIndex > -1) {
+            // If the product already exists, update its quantity and total price
+            cart.items[existingItemIndex].quantity += quantity;
+            cart.items[existingItemIndex].totalPrice += cartProduct.totalPrice;
+        } else {
+            // Add the new product to the cart
+            cart.items.push(cartProduct);
+        }
+
+        // Update the total amount for the cart
+        cart.totalAmount = cart.items.reduce((total: number, item: CartItem) => total + item.totalPrice, 0);
+
+        // Save the cart
+        await cart.save();
+
+        return NextResponse.json(
+            {
+                success: true,
+                message: "Product added to cart successfully",
+                cart,
+            },
+            { status: 200 }
+        );
     } catch (error) {
-      console.error("Error adding to cart:", error);
-      return res.status(500).json({ message: "Internal server error." });
+        console.error("Error during adding to cart:", error);
+        return NextResponse.json(
+            {
+                success: false,
+                message: "Error during adding product to cart",
+            },
+            { status: 500 }
+        );
     }
-  } else {
-    return res.status(405).json({ message: "Method not allowed." });
-  }
 }
