@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { FaCartPlus, FaShoppingBag } from "react-icons/fa";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -9,6 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useSession } from "next-auth/react";
 import axios from "axios";
 import "./CategoryPage.css";
+
 interface Product {
   _id: string;
   name: string;
@@ -26,6 +27,7 @@ interface ApiResponse {
 
 const CategoryPage: React.FC = () => {
   const { category } = useParams<{ category: string }>();
+  const router = useRouter();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -87,31 +89,49 @@ const CategoryPage: React.FC = () => {
       toast({ title: "Error", description: "Failed to add product to cart." });
     }
   };
-  
+
   const handleBuyNow = async (productId: string) => {
     try {
-      // Check if the user is logged in before proceeding
+      // Check if the user is logged in
       if (!session?.user) {
-        toast({ title: "Login required", description: "Please log in to complete the purchase." });
+        toast({
+          title: "Login Required",
+          description: "Please log in to complete the purchase.",
+        });
         return;
       }
-  
-      // Fetch product details (you could optimize this by passing product data instead of productId)
+
+      // Fetch product details
       const product = products.find((prod) => prod._id === productId);
       if (!product) {
-        toast({ title: "Product not found", description: "This product is unavailable." });
+        toast({
+          title: "Product Not Found",
+          description: "This product is unavailable.",
+        });
         return;
       }
-  
-      // Redirect to address form with username and product details
-      window.location.href = `/address?productId=${productId}&quantity=1&username=${session.user.username}&productName=${product.name}`;  // Redirect with query parameters
-      toast({ title: "Redirecting to address page", description: "Please provide your address to complete the purchase." });
+
+      // Redirect to the checkout page with product details
+      router.push(
+        `/checkout?productId=${product._id}&quantity=1&productName=${encodeURIComponent(
+          product.name
+        )}&price=${product.discounted_price}`
+      );
+      
+
+      toast({
+        title: "Redirecting to Checkout",
+        description: "Please provide your address to complete the purchase.",
+      });
     } catch (error) {
-      console.error("Error during buy now:", error);
-      toast({ title: "Error", description: "Failed to initiate direct purchase." });
+      console.error("Error during Buy Now:", error);
+      toast({
+        title: "Error",
+        description: "Failed to initiate direct purchase.",
+      });
     }
   };
-  
+
   const calculateDiscountPercentage = (price: number, discounted_price: number) => {
     return ((price - discounted_price) / price) * 100;
   };
@@ -121,11 +141,7 @@ const CategoryPage: React.FC = () => {
 
   return (
     <>
-    <Header
-        username={session?.user?.username || "Guest"} // Or you can use session?.user?.username
-        cartCount={session?.user?.cartCount || 0}
-        onProfileClick={() => console.log("Profile clicked")}
-      />      
+      <Header/>
       <br />
       <br />
       <nav className="categoryNav">
@@ -200,7 +216,7 @@ const CategoryPage: React.FC = () => {
                   </p>
                   <div className="productActions">
                     <button
-                      onClick={() => handleAddToCart(product._id, 1)} // Only pass productId and quantity
+                      onClick={() => handleAddToCart(product._id, 1)}
                       className="addToCartBtn"
                     >
                       <FaCartPlus color="#333" /> Add to Cart

@@ -25,12 +25,15 @@ const updateCartQuantity = async (req: NextApiRequest, res: NextApiResponse) => 
       }
 
       // Find the product in the user's cart by product ID
-      const productIndex = user.cart.findIndex(item => item.productId.toString() === productId);
+      const productIndex = user.cart.findIndex((item: any) => item.productId.toString() === productId);
 
       // If the product is not in the cart, return an error
       if (productIndex === -1) {
         return res.status(404).json({ message: 'Product not found in cart' });
       }
+
+      // Ensure discounted_price is set, if missing use price as fallback
+      user.cart[productIndex].discounted_price = user.cart[productIndex].discounted_price || user.cart[productIndex].price;
 
       // Update the product's quantity and recalculate the total price
       user.cart[productIndex].quantity = quantity;

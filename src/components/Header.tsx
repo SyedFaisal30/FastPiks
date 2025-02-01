@@ -127,9 +127,9 @@ const Header = () => {
 
   // Calculate total items in the cart
   const getTotalItems = () => {
-    return cart.items.reduce((acc: number, product: any) => acc + product.quantity, 0);
+    return cart.items.length; // Return the total number of items in the cart
   };
-
+  
   // Toggle the user profile dropdown
   const handleProfileClick = () => {
     setDropdownOpen(!isDropdownOpen);

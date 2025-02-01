@@ -56,6 +56,7 @@ export async function POST(req: NextRequest) {
             image: images,  // Store all images
             quantity,
             price,
+            discounted_price: discounted_price,  // Fallback to regular price
             totalPrice: (discounted_price || price) * quantity,  // Calculate total price
             category,
             isBuy: false, // Default to not purchased

@@ -6,6 +6,7 @@ import "./cart.css";
 import { useSession } from "next-auth/react";
 import Header from "@/components/Header";
 import { useToast } from "@/hooks/use-toast"; // Import the useToast hook
+import { useRouter } from "next/navigation"; // Use next/navigation's useRouter for client-side navigation
 
 const CartPage = () => {
   const { data: session } = useSession(); // Initialize session
@@ -13,6 +14,7 @@ const CartPage = () => {
   const [loading, setLoading] = useState<boolean>(true);
 
   const { toast } = useToast(); // Destructure from useToast
+  const router = useRouter(); // Using the useRouter from next/navigation
 
   // Fetch user's cart from the API
   useEffect(() => {
@@ -69,13 +71,13 @@ const CartPage = () => {
           title: "Product quantity increased!",
           description: "Your cart has been updated.",
           variant: "default",
-        }); // Corrected toast call
+        });
       } else {
         toast({
           title: "Error updating cart",
           description: response.data.message,
           variant: "destructive",
-        }); // Corrected toast call
+        });
       }
     } catch (error) {
       console.error("Error during increment:", error);
@@ -83,7 +85,7 @@ const CartPage = () => {
         title: "Error during increment",
         description: "There was an error while updating your cart.",
         variant: "destructive",
-      }); // Corrected toast call
+      });
     }
   };
 
@@ -101,13 +103,13 @@ const CartPage = () => {
           title: "Product quantity decreased!",
           description: "Your cart has been updated.",
           variant: "default",
-        }); // Corrected toast call
+        });
       } else {
         toast({
           title: "Error updating cart",
           description: response.data.message,
           variant: "destructive",
-        }); // Corrected toast call
+        });
       }
     } catch (error) {
       console.error("Error during decrement:", error);
@@ -115,7 +117,7 @@ const CartPage = () => {
         title: "Error during decrement",
         description: "There was an error while updating your cart.",
         variant: "destructive",
-      }); // Corrected toast call
+      });
     }
   };
 
@@ -132,13 +134,13 @@ const CartPage = () => {
           title: "Product deleted",
           description: "The product has been removed from your cart.",
           variant: "default",
-        }); // Corrected toast call
+        });
       } else {
         toast({
           title: "Error deleting product",
           description: response.data.message,
           variant: "destructive",
-        }); // Corrected toast call
+        });
       }
     } catch (error) {
       console.error("Error during deletion:", error);
@@ -146,13 +148,45 @@ const CartPage = () => {
         title: "Error during deletion",
         description: "There was an error while removing the product.",
         variant: "destructive",
-      }); // Corrected toast call
+      });
+    }
+  };
+
+  // Handle the "Buy Whole Cart" action
+  const handleBuyWholeCart = async () => {
+    try {
+      const response = await axios.post("/api/buy-full-cart", {
+        products: cart.items,
+      });
+
+      if (response.data.success) {
+        toast({
+          title: "Order Placed Successfully!",
+          description: "Your entire cart has been successfully ordered.",
+          variant: "default",
+        });
+        // Redirect to the order confirmation page or another page
+        router.push("/order-confirmation"); // Use next/navigation's router
+      } else {
+        toast({
+          title: "Error placing order",
+          description: response.data.message,
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error("Error placing order:", error);
+      toast({
+        title: "Error placing order",
+        description: "There was an issue placing your order.",
+        variant: "destructive",
+      });
     }
   };
 
   return (
     <>
-      <Header/>
+      <Header />
 
       <br />
       <br />
@@ -230,6 +264,15 @@ const CartPage = () => {
                   </div>
                 </div>
               ))}
+              {/* Button to buy the whole cart */}
+              <div className="w-full flex justify-center mt-6">
+                <button
+                  onClick={handleBuyWholeCart}
+                  className="w-full py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 transition"
+                >
+                  Buy Whole Cart
+                </button>
+              </div>
             </>
           )}
         </div>

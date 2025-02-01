@@ -66,9 +66,13 @@ const AddressPage: React.FC = () => {
         quantity,
         productName, // Ensure that productName is included in the order data
       };
-  
-      const response = await axios.post("/api/place-order", orderData);
-  
+
+      console.log("Order Data to be sent:", orderData);  // Log the order data being sent
+
+      const response = await axios.post("/api/place-order", orderData, {
+        headers: { "Content-Type": "application/json" },  // Ensure proper content type
+      });
+
       if (response.data.success) {
         alert("Order placed successfully! A confirmation email has been sent.");
         router.push("/");
@@ -80,14 +84,14 @@ const AddressPage: React.FC = () => {
       setError("An error occurred while placing your order.");
     }
   };
-  
+
   return (
     <div className="bg-off-white min-h-screen flex items-center justify-center p-4">
       <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg">
         <h1 className="text-2xl font-semibold mb-4">Shipping Information</h1>
 
         <p className="text-lg mb-2">
-          <strong>Username:</strong> {username}
+          <strong>Username:</strong> {session?.user?.username}
         </p>
         <p className="text-lg mb-2">
           <strong>Email:</strong> {email}
