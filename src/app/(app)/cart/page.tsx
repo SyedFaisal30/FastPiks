@@ -154,40 +154,23 @@ const CartPage = () => {
 
   // Handle the "Buy Whole Cart" action
   const handleBuyWholeCart = async () => {
-    try {
-      const response = await axios.post("/api/buy-full-cart", {
-        products: cart.items,
-      });
-
-      if (response.data.success) {
-        toast({
-          title: "Order Placed Successfully!",
-          description: "Your entire cart has been successfully ordered.",
-          variant: "default",
-        });
-        // Redirect to the order confirmation page or another page
-        router.push("/order-confirmation"); // Use next/navigation's router
-      } else {
-        toast({
-          title: "Error placing order",
-          description: response.data.message,
-          variant: "destructive",
-        });
-      }
-    } catch (error) {
-      console.error("Error placing order:", error);
+    if (!session?.user?.id) {
       toast({
-        title: "Error placing order",
-        description: "There was an issue placing your order.",
+        title: "Not Logged In",
+        description: "You need to log in to proceed with purchasing.",
         variant: "destructive",
       });
+      router.push("/sign-in"); // Redirect to login page if not logged in
+      return;
     }
+
+    // Instead of making an API call here, redirect to the checkout page
+    router.push("/checkout-cart");
   };
 
   return (
     <>
       <Header />
-
       <br />
       <br />
       <div className="pricingInfo flex flex-col md:flex-row justify-center items-center space-x-4 p-4 border-b border-gray-200">
@@ -270,7 +253,7 @@ const CartPage = () => {
                   onClick={handleBuyWholeCart}
                   className="w-full py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 transition"
                 >
-                  Buy Whole Cart
+                  Checkout Cart
                 </button>
               </div>
             </>
