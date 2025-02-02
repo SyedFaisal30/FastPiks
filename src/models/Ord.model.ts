@@ -2,15 +2,15 @@ import mongoose, { Schema, Document } from 'mongoose';
 
 // Order Item Interface (for each product in the order)
 interface OrderItem {
-  productId: mongoose.Schema.Types.ObjectId;
-  productName: string;  // 'productName' in camelCase
+  product_id: mongoose.Schema.Types.ObjectId;
+  productname: string;  // 'productName' in camelCase
   quantity: number;
   price: number;  // Added price field for tracking the price of individual items
 }
 
 // Order Interface
 export interface Order extends Document {
-  userId: mongoose.Schema.Types.ObjectId;  // Renamed to 'userId' to be consistent
+  user_id: mongoose.Schema.Types.ObjectId;  // Renamed to 'userId' to be consistent
   products: OrderItem[];
   totalAmount: number;  // Total amount for the entire order
   orderType: 'direct' | 'cart';  // New field to differentiate direct purchase vs cart purchase
@@ -22,19 +22,19 @@ export interface Order extends Document {
 // Order Schema
 const orderSchema: Schema<Order> = new Schema(
   {
-    userId: {  // Consistent with 'userId' in the interface
+    user_id: {  // Consistent with 'userId' in the interface
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User', // Reference to the User model
       required: true,
     },
     products: [
       {
-        productId: {  // 'productId' instead of 'product_id' for consistency
+        product_id: {  // 'productId' instead of 'product_id' for consistency
           type: mongoose.Schema.Types.ObjectId,
           ref: 'Product', // Reference to the Product model
           required: true,
         },
-        productName: {
+        productname: {
           type: String,
           required: true,
         },

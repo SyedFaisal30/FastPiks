@@ -38,22 +38,38 @@ export default function SignInForm() {
       password: data.password,
     });
 
+    console.log("SignIn Result:", result);
+
     if (result?.error) {
-      if (result.error === "CredentialsSignin") {
+      if (result.error === "Invalid Email!") {
         toast({
-          title: "Invalid credentials",
-          description: "Invalid email or password",
+          title: "Invalid email",
+          description: "The email you entered does not exist",
+          variant: "destructive",
+        });
+      } else if (result.error === "Incorrect password!") {
+        toast({
+          title: "Invalid Password",
+          description: "Invalid password",
           variant: "destructive",
         });
       } else {
         toast({
           title: "Something went wrong",
-          description: "Please try again later",
+          description: result.error,
           variant: "destructive",
         });
       }
+      return;
     }
+    
     if (result?.url) {
+      toast({
+        title: "Login Successful",
+        description: "Welcome back!",
+        variant: "default",
+      });
+
       router.replace("/");
     }
   };

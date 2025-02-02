@@ -26,7 +26,7 @@ export const authOptions: NextAuthOptions = {
           console.log("User Found:", user);
 
           if (!user) {
-            throw new Error("User not found with email or username!");
+            throw new Error("Invalid email!");
           }
 
           // Compare the password
@@ -40,6 +40,7 @@ export const authOptions: NextAuthOptions = {
           return user;
 
         } catch (error: any) {
+          console.error("Auth Error:", error.message);
           throw new Error(error.message || "Something went wrong!");
         }
       },

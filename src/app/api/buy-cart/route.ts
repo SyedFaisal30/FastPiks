@@ -48,22 +48,22 @@ export async function POST(req: NextRequest) {
 
     // Map cart items to the order item structure based on your model
     const orderItems = cartItems.map((item: any) => ({
-      productId: item.productId, // Map productId from cart item
-      productName: item.name,    // Map name as productName
+      product_id: item.productId, // Map productId from cart item
+      productname: item.name,    // Map name as productName
       quantity: item.quantity,  // Quantity
       price: item.discounted_price, // Use discounted price (or regular price if needed)
     }));
 
     // Create the order object based on the provided order model structure
     const order = new OrdModel({
-      userId: userId, // Ensure 'userId' is correctly passed here
+      user_id: userId, // Ensure 'userId' is correctly passed here
       products: orderItems,  // Products array, mapped correctly
       address,  // The address for the order
       orderType: "cart",  // You are handling a cart order
     });
 
     // Calculate the total amount of the order based on the order items
-    order.calculateTotalAmount();
+    // order.calculateTotalAmount();
 
     // Save the order to the database
     await order.save();

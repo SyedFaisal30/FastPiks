@@ -1,48 +1,15 @@
-// import nodemailer from "nodemailer";
-
-// async function sendEmail(
-//   username: string,
-//   email: string,
-//   productName: string,
-//   quantity: number,
-//   address: string
-// ) {
-//   const transporter = nodemailer.createTransport({
-//     service: "gmail",
-//     auth: {
-//       user: process.env.EMAIL_USER,
-//       pass: process.env.EMAIL_PASS,
-//     },
-//   });
-
-//   const mailOptions = {
-//     from: process.env.EMAIL_USER,
-//     to: email,
-//     subject: "Order Confirmation",
-//     text: `Hi ${username},\n\nThank you for your order!\n\nProduct: ${productName}\nQuantity: ${quantity}\nShipping Address: ${address}\n\nYour order will be processed shortly.\n\nBest Regards,\nYour Store`,
-//   };
-
-//   try {
-//     await transporter.sendMail(mailOptions);
-//     console.log("Confirmation email sent!");
-//   } catch (error) {
-//     console.error("Error sending email:", error);
-//   }
-// }
-
-// export default sendEmail;
-
-
 "use client";
 import React, { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import axios from "axios";
 import { useSession } from "next-auth/react";
+import { useToast } from "@/hooks/use-toast";
 
 const AddressPage: React.FC = () => {
   const { data: session } = useSession();
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { toast } = useToast();
 
   const productId = searchParams.get("productId");
   const initialQuantity = searchParams.get("quantity") || "1";
@@ -111,11 +78,21 @@ const AddressPage: React.FC = () => {
       });
 
       if (response.data.success) {
-        alert("Order placed successfully! A confirmation email has been sent.");
+        toast({
+          title: "Order Placed Successfully",
+          description: "A confirmation email has been sent.",
+          variant: "default", // Optional: use "success" for success toast style
+        });
         router.push("/"); // Redirect to homepage or order confirmation page
       } else {
+        toast({
+          title: "Order Failed",
+          description: "Failed to place the order. Please try again.",
+          variant: "destructive", // Optional: use "destructive" for error toast style
+        });
         setError("Failed to place the order.");
       }
+      
     } catch (error) {
       console.error("Error placing order:", error);
       setError("An error occurred while placing your order.");

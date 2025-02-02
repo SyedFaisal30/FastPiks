@@ -71,7 +71,8 @@ export default function SignUpForm() {
 
       toast({
         title: "Success",
-        description: "Account Created Successfully",
+        description: "Verification code sent successfully.",
+        variant: "default",
       });
 
       router.replace(`/verify/${data.username}`);
@@ -121,7 +122,7 @@ export default function SignUpForm() {
                   {!isCheckingUsername && usernameMessage && (
                     <p
                       className={`text-sm ${
-                        usernameMessage === "Username available"
+                        usernameMessage === "Username is available"
                           ? "text-green-500"
                           : "text-red-500"
                       }`}
