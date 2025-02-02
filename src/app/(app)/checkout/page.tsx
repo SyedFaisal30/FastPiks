@@ -1,3 +1,38 @@
+// import nodemailer from "nodemailer";
+
+// async function sendEmail(
+//   username: string,
+//   email: string,
+//   productName: string,
+//   quantity: number,
+//   address: string
+// ) {
+//   const transporter = nodemailer.createTransport({
+//     service: "gmail",
+//     auth: {
+//       user: process.env.EMAIL_USER,
+//       pass: process.env.EMAIL_PASS,
+//     },
+//   });
+
+//   const mailOptions = {
+//     from: process.env.EMAIL_USER,
+//     to: email,
+//     subject: "Order Confirmation",
+//     text: `Hi ${username},\n\nThank you for your order!\n\nProduct: ${productName}\nQuantity: ${quantity}\nShipping Address: ${address}\n\nYour order will be processed shortly.\n\nBest Regards,\nYour Store`,
+//   };
+
+//   try {
+//     await transporter.sendMail(mailOptions);
+//     console.log("Confirmation email sent!");
+//   } catch (error) {
+//     console.error("Error sending email:", error);
+//   }
+// }
+
+// export default sendEmail;
+
+
 "use client";
 import React, { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -23,6 +58,7 @@ const AddressPage: React.FC = () => {
   const username = usernameFromQuery;
   const email = session?.user?.email || "";
 
+  // Fetch product name if productId is available
   useEffect(() => {
     if (productId && !productNameFromQuery) {
       axios
@@ -48,21 +84,22 @@ const AddressPage: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-  
+
+    // Validation checks
     if (!address) {
       setError("Please enter your address.");
       return;
     }
-  
+
     if (!productId) {
       setError("Invalid product selection.");
       return;
     }
-  
+
     try {
-      const orderData = { 
-        productId, 
-        address, 
+      const orderData = {
+        productId,
+        address,
         quantity,
         productName, // Ensure that productName is included in the order data
       };
@@ -70,12 +107,12 @@ const AddressPage: React.FC = () => {
       console.log("Order Data to be sent:", orderData);  // Log the order data being sent
 
       const response = await axios.post("/api/place-order", orderData, {
-        headers: { "Content-Type": "application/json" },  // Ensure proper content type
+        headers: { "Content-Type": "application/json" },
       });
 
       if (response.data.success) {
         alert("Order placed successfully! A confirmation email has been sent.");
-        router.push("/");
+        router.push("/"); // Redirect to homepage or order confirmation page
       } else {
         setError("Failed to place the order.");
       }
@@ -107,7 +144,7 @@ const AddressPage: React.FC = () => {
             value={quantity}
             onChange={handleQuantityChange}
             min="1"
-            className="border border-gray-300 rounded p-2 ml-2"
+            className="border border-gray-300 rounded p-2 ml-2 w-16"
           />
         </label>
 

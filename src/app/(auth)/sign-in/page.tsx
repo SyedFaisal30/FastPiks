@@ -42,7 +42,7 @@ export default function SignInForm() {
       if (result.error === "CredentialsSignin") {
         toast({
           title: "Invalid credentials",
-          description: "Invalid username or password",
+          description: "Invalid email or password",
           variant: "destructive",
         });
       } else {
@@ -73,8 +73,8 @@ export default function SignInForm() {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Username</FormLabel>
-                  <Input placeholder="Username or Email" {...field} />
+                  <FormLabel>Email</FormLabel>
+                  <Input placeholder="Email" {...field} />
                   <FormMessage />
                 </FormItem>
               )}

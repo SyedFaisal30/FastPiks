@@ -1,4 +1,4 @@
-/* General Reset */
+General Reset
 * {
   margin: 0;
   padding: 0;
@@ -23,7 +23,7 @@ body {
 /* Adjusted Product Item Size to 30% */
 .productItem {
   width: 30%; /* Adjusted to 30% width */
-  height: auto; /* Allow height to adjust based on content */
+  height: 50%; /* Allow height to adjust based on content */
   margin: 1vh 1vw; /* Spacing between products */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
@@ -40,8 +40,6 @@ body {
 /* Image slider section */
 .slidesDetail {
   position: relative;
-  width: 100%; /* Image takes full width */
-  height: 100%; /* Adjust height to fit content */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -245,3 +243,6 @@ body {
       padding: 8px 2px; /* Further adjust padding */
   }
 }
+
+
+

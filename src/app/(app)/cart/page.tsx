@@ -202,14 +202,14 @@ const CartPage = () => {
               {cart.items.map((product: any) => (
                 <div
                   key={product.productId}
-                  className="productItem flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 p-4 border-b border-gray-200"
+                  className="productItem"
                 >
                   <div className="slidesDetail">
                     {product.image && product.image.length > 0 ? (
                       <img
                         src={product.image[0]}
                         alt={product.name}
-                        className="slideDetail w-32 h-32 object-cover"
+                        className="slideDetail  object-cover"
                       />
                     ) : (
                       <div>No Image Available</div>

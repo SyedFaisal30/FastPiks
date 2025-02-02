@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import dbConnect from "@/lib/dbConnect";
 import CartModel from "@/models/Cart.model";
-import OrdModel from "@/models/Ord.model";
+import OrdModel from "@/models/Ord.model";  // Importing the updated OrdModel
 import { getToken } from "next-auth/jwt";
 import UserModel from "@/models/User.model"; // Import the UserModel
+import sendCartEmail from "@/helpers/cartEmail"; // Import sendCartEmail function
 
 export async function POST(req: NextRequest) {
   try {
@@ -45,62 +46,43 @@ export async function POST(req: NextRequest) {
     // Log cartItems to verify the structure
     console.log("Cart Items received:", cartItems);
 
-    // Map cart items to the order item structure
+    // Map cart items to the order item structure based on your model
     const orderItems = cartItems.map((item: any) => ({
       productId: item.productId, // Map productId from cart item
-      productName: item.name, // Map name as productName
-      quantity: item.quantity, // Quantity
+      productName: item.name,    // Map name as productName
+      quantity: item.quantity,  // Quantity
       price: item.discounted_price, // Use discounted price (or regular price if needed)
     }));
 
-    // Calculate the total amount for the order
-    const totalAmount = cartItems.reduce((total: number, item: any) => {
-      return total + item.quantity * item.discounted_price;
-    }, 0);
-
-    // Create the order first (before modifying cart)
+    // Create the order object based on the provided order model structure
     const order = new OrdModel({
-      userId: userId,
-      products: orderItems, // Use the mapped items here
-      totalAmount,
-      address,
-      orderType: "cart",
+      userId: userId, // Ensure 'userId' is correctly passed here
+      products: orderItems,  // Products array, mapped correctly
+      address,  // The address for the order
+      orderType: "cart",  // You are handling a cart order
     });
 
-    // Save the order
+    // Calculate the total amount of the order based on the order items
+    order.calculateTotalAmount();
+
+    // Save the order to the database
     await order.save();
 
-    // After saving the order, set a timeout to clear the cart
-    setTimeout(async () => {
-      try {
-        // Update cart items' isBuy to true after order creation
-        await CartModel.updateOne(
-          { userId },
-          {
-            $set: {
-              "items.$[].isBuy": true, // Update all items' isBuy to true
-            },
-          }
-        );
+    // Send cart order confirmation email after the order is saved
+    await sendCartEmail(user.username, user.email, orderItems, address, order.totalAmount);
 
-        // Clear the cart in database (empty the cart) after 30 seconds
-        await CartModel.updateOne(
-          { userId },
-          { $set: { items: [], totalAmount: 0 } }
-        );
-
-        console.log("Cart cleared after 30 seconds.");
-      } catch (error) {
-        console.error("Error clearing cart after 30 seconds:", error);
-      }
-    }, 30); // 30 seconds delay (30,000 milliseconds)
+    // Clear the cart after the order is placed
+    await CartModel.updateOne(
+      { userId },
+      { $set: { items: [], totalAmount: 0 } }
+    );
 
     return NextResponse.json(
       {
         message: "Cart purchased successfully",
         orderDetails: {
           products: orderItems, // Return the products as part of the response
-          totalAmount,
+          totalAmount: order.totalAmount,
         },
       },
       { status: 200 }
