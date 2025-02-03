@@ -47,27 +47,27 @@ export default function NavbarWithCarousel() {
   const cardData = [
     {
       title: "Men's",
-      image: "/images/producta/men.jpg",
+      image: "/Images/Producta/Men.jpg",
       link: "/category/Men",
     },
     {
       title: "Women's",
-      image: "/images/producta/women.jpg",
+      image: "/Images/Producta/Women.jpg",
       link: "/category/Women",
     },
     {
       title: "Kids",
-      image: "/images/producta/kid.jpg",
+      image: "/Images/Producta/Kid.jpg",
       link: "/category/Kid",
     },
     {
       title: "Footwear",
-      image: "/images/producta/footwear.jpeg",
+      image: "/Images/Producta/Footwear.jpeg",
       link: "/category/Footwear",
     },
     {
       title: "Accessories",
-      image: "/images/producta/Accessorie.jpeg",
+      image: "/Images/Producta/Accessorie.jpeg",
       link: "/category/Accessories",
     },
   ];
@@ -75,7 +75,7 @@ export default function NavbarWithCarousel() {
   return (
     <>
       {/* Navbar */}
-      <Header username="Faisal" cartCount={3} onProfileClick={handleProfileClick} />
+      <Header/>
       {/* Carousel */}
       <div className="mt-20 flex justify-center items-center">
       <div className="relative w-[95vw] h-[30vh] md:h-[70vh] overflow-hidden bg-gray-200 rounded-lg shadow-lg">
