@@ -1,8 +1,8 @@
 import FeedbackModel from "@/models/Feedback.model";
 import dbConnect from "@/lib/dbConnect";
-import { NextRequest,NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(request: NextRequest, response: NextResponse) {
+export async function POST(request: NextRequest) {  // Remove the response parameter
     await dbConnect();
 
     try {
