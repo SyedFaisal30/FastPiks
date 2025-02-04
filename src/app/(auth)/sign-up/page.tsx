@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useDebounceCallback } from "usehooks-ts";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import {
@@ -26,7 +25,7 @@ export default function SignUpForm() {
   const [usernameMessage, setUsernameMessage] = useState("");
   const [isCheckingUsername, setIsCheckingUsername] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const debounceUsername = useDebounceCallback(setUsername, 500);
+  const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout>();
 
   const router = useRouter();
   const { toast } = useToast();
@@ -40,6 +39,14 @@ export default function SignUpForm() {
     },
   });
 
+  const debounceUsername = (value: string) => {
+    if (timeoutId) clearTimeout(timeoutId);
+    const newTimeoutId = setTimeout(() => {
+      setUsername(value);
+    }, 300);
+    setTimeoutId(newTimeoutId);
+  };
+  
   useEffect(() => {
     const checkUsernameUnique = async () => {
       if (username) {
