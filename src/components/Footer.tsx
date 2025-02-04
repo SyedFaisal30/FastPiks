@@ -31,10 +31,10 @@ const Footer = () => {
           </div>
           
           <div className="flex justify-center flex-row md:flex-row items-center gap-4 md:gap-8 text-sm">
-            <a href="/contact-us" className="hover:text-gray-400">
-              Contact Us
+            <a href="/feedback" className="hover:text-gray-400">
+              Feedback
             </a>
-            <a href="/terms-and-conditions" className="hover:text-gray-400">
+            <a href="/t&c" className="hover:text-gray-400">
               Terms & Conditions
             </a>
             <a href="/policy" className="hover:text-gray-400">

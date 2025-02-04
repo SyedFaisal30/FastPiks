@@ -1,17 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Montserrat } from "next/font/google";  // Correct import
 import "./globals.css";
-import  AuthProvider  from "../context/AuthProvider";
+import AuthProvider from "../context/AuthProvider";
 import { Toaster } from "@/components/ui/toaster";
-  
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+// Import Montserrat font with the desired weights
+const montserrat = Montserrat({
   subsets: ["latin"],
+  weight: ["400"], // Specify just the Regular 400 weight
 });
 
 export const metadata: Metadata = {
@@ -27,12 +23,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <AuthProvider>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-        <Toaster />
-      </body>
+        <body
+          className={`${montserrat.className} antialiased`} // Apply the Montserrat class here
+        >
+          {children}
+          <Toaster />
+        </body>
       </AuthProvider>
     </html>
   );

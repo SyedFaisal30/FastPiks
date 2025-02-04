@@ -103,6 +103,7 @@ body {
   font-size: 20px;
   margin-bottom: 10px;
   color: #555;
+  height: 35%
 }
 
 /* Style for Discounted Price */
@@ -222,7 +223,9 @@ body {
     width: 100%;
     margin-top: 20px; /* Add space between the image and details */
   }
-
+  .detail p {
+    height: auto;
+  }
   .productActions {
     flex-direction: row;
     gap: 15px; /* Increase gap between buttons for vertical layout */

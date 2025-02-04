@@ -208,9 +208,9 @@ const CategoryPage: React.FC = () => {
                       {discountPercentage.toFixed(0)}% Off
                     </p>
                   </div>
-                  <p>
-                    <strong>Stock:</strong> {product.stock}
-                  </p>
+                    {/* <p>
+                      <strong>Stock:</strong> {product.stock}
+                    </p> */}
                   <p>
                     <strong>Note:</strong> {product.note}
                   </p>
