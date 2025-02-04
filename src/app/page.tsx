@@ -1,9 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import {
-  FaChevronLeft,
-  FaChevronRight,
-} from "react-icons/fa";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -12,6 +9,7 @@ import "./globals.css";
 export default function NavbarWithCarousel() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(true);
 
   const slides = [
     { id: 1, image: "/Images/Display/1.jpg", alt: "Slide 1" },
@@ -23,26 +21,41 @@ export default function NavbarWithCarousel() {
     { id: 7, image: "/Images/Display/7.jpg", alt: "Slide 7" },
   ];
 
-  const handleProfileClick = () => {
-    setIsDropdownOpen((prev) => !prev);
-  };
+  // Duplicate slides for infinite effect
+  const extendedSlides = [...slides, ...slides]; 
+
+  const totalSlides = slides.length;
 
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === slides.length - 1 ? 0 : prevIndex + 1
-    );
+    setIsTransitioning(true);
+    setCurrentIndex((prevIndex) => prevIndex + 1);
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? slides.length - 1 : prevIndex - 1
-    );
+    setIsTransitioning(true);
+    setCurrentIndex((prevIndex) => prevIndex - 1);
   };
 
   useEffect(() => {
-    const interval = setInterval(nextSlide, 2000);
+    const interval = setInterval(nextSlide, 3000);
     return () => clearInterval(interval);
   }, []);
+
+  // Reset transition when reaching the cloned slides
+  useEffect(() => {
+    if (currentIndex >= totalSlides) {
+      setTimeout(() => {
+        setIsTransitioning(false);
+        setCurrentIndex(0);
+      }, 500); // Delay for smooth effect
+    }
+    if (currentIndex < 0) {
+      setTimeout(() => {
+        setIsTransitioning(false);
+        setCurrentIndex(totalSlides - 1);
+      }, 500);
+    }
+  }, [currentIndex, totalSlides]);
 
   const cardData = [
     {
@@ -78,38 +91,39 @@ export default function NavbarWithCarousel() {
       <Header/>
       {/* Carousel */}
       <div className="mt-20 flex justify-center items-center">
-      <div className="relative w-[95vw] h-[30vh] md:h-[70vh] overflow-hidden bg-gray-200 rounded-lg shadow-lg">
-        {slides.map((slide, index) => (
+        <div className="relative w-[95vw] h-[30vh] md:h-[70vh] overflow-hidden bg-gray-200 rounded-lg shadow-lg">
           <div
-            key={slide.id}
-            className="absolute inset-0 transition-transform duration-1000"
+            className="flex transition-transform duration-1000"
             style={{
-              transform: `translateX(${(index - currentIndex) * 100}%)`,
+              transform: `translateX(-${currentIndex * 100}%)`,
+              transition: isTransitioning ? "transform 1s ease-in-out" : "none",
             }}
           >
-            <img
-              src={slide.image}
-              alt={slide.alt}
-              className="w-full h-full object-cover"
-            />
+            {extendedSlides.map((slide, index) => (
+              <img
+                key={index}
+                src={slide.image}
+                alt={slide.alt}
+                className="w-full h-full object-cover flex-shrink-0"
+              />
+            ))}
           </div>
-        ))}
-        
-        <button
-          onClick={prevSlide}
-          className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-800/75 text-white rounded-full p-2 shadow-md hover:bg-gray-600 transition-colors"
-        >
-          <FaChevronLeft className="w-6 h-6" />
-        </button>
-        
-        <button
-          onClick={nextSlide}
-          className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-800/75 text-white rounded-full p-2 shadow-md hover:bg-gray-600 transition-colors"
-        >
-          <FaChevronRight className="w-6 h-6" />
-        </button>
+
+          <button
+            onClick={prevSlide}
+            className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-800/75 text-white rounded-full p-2 shadow-md hover:bg-gray-600 transition-colors"
+          >
+            <FaChevronLeft className="w-6 h-6" />
+          </button>
+
+          <button
+            onClick={nextSlide}
+            className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-800/75 text-white rounded-full p-2 shadow-md hover:bg-gray-600 transition-colors"
+          >
+            <FaChevronRight className="w-6 h-6" />
+          </button>
+        </div>
       </div>
-    </div>
 
       {/* Cards Section */}
       <div>
