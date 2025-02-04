@@ -1,21 +1,10 @@
 "use client";
 import { useState } from "react";
 import AddProductForm from "./add-products"; // Import the AddProductForm
-import data from "@/data/products.json"; // Import the product data
 import ProductList from "./pruducts-list"; // Correct import path
 
 const ProductAdmin = () => {
-  const [showForm, setShowForm] = useState<boolean>(false);
-  const [products, setProducts] = useState(data.products);
-
-  const handleAddProduct = (newProduct: any) => {
-    setProducts([
-      ...products,
-      { ...newProduct, id: Math.random().toString(36).substring(7) },
-    ]);
-    setShowForm(false);
-  };
-
+  const [showForm, setShowForm] = useState<boolean>(false)
   const categories = ["Men", "Women", "Kid", "Footwear", "Accessories"];
 
   return (
