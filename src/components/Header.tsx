@@ -41,7 +41,7 @@ const Header = () => {
     <header className="fixed top-0 left-0 w-full bg-opacity-70 shadow-md z-50">
       <div className="header-container flex justify-between items-center p-4">
         <Link href="/">
-        <h1 className="text-2xl font-bold text-gray-900">FastFind</h1>
+        <h1 className="text-2xl font-bold text-gray-900">FastPiks</h1>
         </Link>
         <div className="flex gap-6 items-center relative">
           {/* Cart Icon with Badge */}

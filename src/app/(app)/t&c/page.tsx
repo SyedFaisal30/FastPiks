@@ -10,35 +10,35 @@ export default function TermsAndConditions() {
         <br />
       <div className="w-[90%] mx-auto p-6 bg-full-white shadow-lg rounded-lg mt-10">
         <h1 className="text-3xl font-bold mb-6">Terms and Conditions</h1>
-        <p className="mb-4">Welcome to FastFind!</p>
+        <p className="mb-4">Welcome to FastPiks!</p>
         <p className="mb-4">
-          These terms and conditions outline the rules and regulations for the use of FastFind's Website,
-          located at https://fastfind.vervel.com/.
+          These terms and conditions outline the rules and regulations for the use of FastPiks's Website,
+          located at https://FastPiks.vervel.com/.
         </p>
         <p className="mb-4">
           By accessing this website, we assume you accept these terms and conditions. Do not continue to use
-          FastFind if you do not agree to take all of the terms and conditions stated on this page.
+          FastPiks if you do not agree to take all of the terms and conditions stated on this page.
         </p>
         
         <h2 className="text-2xl font-semibold mt-6 mb-4">Cookies</h2>
         <p className="mb-4">
-          We employ the use of cookies. By accessing FastFind, you agreed to use cookies in agreement with
-          FastFind's Privacy Policy.
+          We employ the use of cookies. By accessing FastPiks, you agreed to use cookies in agreement with
+          FastPiks's Privacy Policy.
         </p>
         
         <h2 className="text-2xl font-semibold mt-6 mb-4">License</h2>
         <p className="mb-4">
-          Unless otherwise stated, FastFind and/or its licensors own the intellectual property rights for all
-          material on FastFind. All intellectual property rights are reserved. You may access this from FastFind
+          Unless otherwise stated, FastPiks and/or its licensors own the intellectual property rights for all
+          material on FastPiks. All intellectual property rights are reserved. You may access this from FastPiks
           for your own personal use subjected to restrictions set in these terms and conditions.
         </p>
         
         <h2 className="text-2xl font-semibold mt-6 mb-4">You must not:</h2>
         <ul className="list-disc list-inside mb-4">
-          <li>Republish material from FastFind</li>
-          <li>Sell, rent, or sub-license material from FastFind</li>
-          <li>Reproduce, duplicate, or copy material from FastFind</li>
-          <li>Redistribute content from FastFind</li>
+          <li>Republish material from FastPiks</li>
+          <li>Sell, rent, or sub-license material from FastPiks</li>
+          <li>Reproduce, duplicate, or copy material from FastPiks</li>
+          <li>Redistribute content from FastPiks</li>
         </ul>
         
         <h2 className="text-2xl font-semibold mt-6 mb-4">Content Liability</h2>

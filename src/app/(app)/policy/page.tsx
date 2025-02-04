@@ -16,7 +16,7 @@ export default function CancellationExchangePolicy() {
             Cancellation & Exchange Policy
           </h1>
           <p className="mb-4">
-            FastFind follows a friendly policy to ensure your purchases are
+            FastPiks follows a friendly policy to ensure your purchases are
             stress-free. We offer a
             <strong> “100% Buyer Protection Program” </strong> for our valued
             customers.
@@ -24,7 +24,7 @@ export default function CancellationExchangePolicy() {
 
           <h2 className="text-xl font-semibold mt-6">Size Exchange</h2>
           <p className="mb-4">
-            At FastFind, we confirm your size before dispatching any product.
+            At FastPiks, we confirm your size before dispatching any product.
             However, if there is any size issue later, customers must email us
             within <strong>48 hours</strong> of delivery. Customers need to
             return the product in good condition to our address and pay{" "}

@@ -44,7 +44,7 @@ async function sendEmail(
         </ul>
         <p>Your order will be processed shortly and delivered to you within 3 working days.</p>
         <br>
-        <p>Best Regards,<br>Your Store</p>
+        <p>Best Regards,<br>FastPiks</p>
       </div>
     `,
   };

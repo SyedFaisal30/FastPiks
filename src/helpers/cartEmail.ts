@@ -59,7 +59,7 @@ async function sendCartEmail(
         <p><strong>Shipping Address:</strong> ${address}</p>
         <p>Your order will be processed and delivered within 3 working days.</p>
         <br>
-        <p>Best Regards,<br>Your Store</p>
+        <p>Best Regards,<br>FirstPiks</p>
       </div>
     `,
   };
