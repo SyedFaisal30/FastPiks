@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "vercel build": "npm i --force && npm run build",
+    "build": "npm i --force && npm run build",
     "start": "next start",
     "lint": "next lint"
   },
