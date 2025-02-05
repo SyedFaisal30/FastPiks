@@ -83,10 +83,10 @@ const CategoryPage: React.FC = () => {
         { productId, quantity }, 
         { headers: { 'Content-Type': 'application/json' } }
       );
-      toast({ title: "Product added to cart", description: "Successfully added." });
+      toast({ title: "Product added to cart", description: "Successfully added.", variant: "default" });
     } catch (error) {
       console.error("Error adding to cart:", error);
-      toast({ title: "Error", description: "Failed to add product to cart." });
+      toast({ title: "Login Required", description: "Please log in to add product to cart.", variant: "destructive" });
     }
   };
 
@@ -97,6 +97,7 @@ const CategoryPage: React.FC = () => {
         toast({
           title: "Login Required",
           description: "Please log in to complete the purchase.",
+          variant: "destructive",
         });
         return;
       }
@@ -107,6 +108,7 @@ const CategoryPage: React.FC = () => {
         toast({
           title: "Product Not Found",
           description: "This product is unavailable.",
+          variant: "destructive",
         });
         return;
       }
@@ -122,12 +124,14 @@ const CategoryPage: React.FC = () => {
       toast({
         title: "Redirecting to Checkout",
         description: "Please provide your address to complete the purchase.",
+        variant: "destructive",
       });
     } catch (error) {
       console.error("Error during Buy Now:", error);
       toast({
         title: "Error",
         description: "Failed to initiate direct purchase.",
+        variant: "destructive",
       });
     }
   };
