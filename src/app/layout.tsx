@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";  // Correct import
+import { Poppins } from "next/font/google"; // Import Poppins font
 import "./globals.css";
 import AuthProvider from "../context/AuthProvider";
 import { Toaster } from "@/components/ui/toaster";
 
-// Import Montserrat font with the desired weights
-const montserrat = Montserrat({
+// Import Poppins font with the desired weights
+const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400"], // Specify just the Regular 400 weight
 });
@@ -24,7 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <AuthProvider>
         <body
-          className={`${montserrat.className} antialiased`} // Apply the Montserrat class here
+          className={`${poppins.className} antialiased`} // Apply the Poppins font
         >
           {children}
           <Toaster />
