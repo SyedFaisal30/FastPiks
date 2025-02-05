@@ -166,6 +166,11 @@ const CartPage = () => {
 
     // Instead of making an API call here, redirect to the checkout page
     router.push("/checkout-cart");
+    toast({
+      title: "Redirecting to Checkout",
+      description: "Please provide your address to complete the purchase.",
+      variant: "default",
+    });
   };
 
   return (

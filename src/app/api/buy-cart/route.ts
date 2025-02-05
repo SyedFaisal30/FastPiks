@@ -63,7 +63,7 @@ export async function POST(req: NextRequest) {
     });
 
     // Calculate the total amount of the order based on the order items
-    // order.calculateTotalAmount();
+    order.calculateTotalAmount();
 
     // Save the order to the database
     await order.save();

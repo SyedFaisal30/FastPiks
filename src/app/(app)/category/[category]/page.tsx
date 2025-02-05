@@ -124,7 +124,7 @@ const CategoryPage: React.FC = () => {
       toast({
         title: "Redirecting to Checkout",
         description: "Please provide your address to complete the purchase.",
-        variant: "destructive",
+        variant: "default",
       });
     } catch (error) {
       console.error("Error during Buy Now:", error);
