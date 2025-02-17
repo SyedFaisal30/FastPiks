@@ -16,7 +16,7 @@ async function dbConnect(): Promise<void> {
   }
 
   try {
-    const db = await mongoose.connect(process.env.MONGODB_URI||"mongodb+srv://sfarz172320:root@cluster0.2foau.mongodb.net/ecommerce",{} 
+    const db = await mongoose.connect(process.env.MONGODB_URI||"",{} 
     );
 
     console.log("DB connection status:", db.connection.readyState);
